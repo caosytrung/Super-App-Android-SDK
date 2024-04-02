@@ -22,57 +22,34 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.trungcs.base.widget.CenterColumn
-import com.trungcs.superapp.R
+import com.trungcs.demoandroidminiapp.R
+import com.trungcs.demoandroidminiapp.remote.model.Product
 import com.trungcs.superapp.ui.theme.MiniAppTheme
-import com.trungcs.superapp.ui.theme.SuperAppTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
+
+data class ProductListsUiState(
+    val products: List<Product> = listOf(),
+    val isLoading: Boolean = false,
+    val throwError: Boolean = false,
+)
 
 @Composable
-fun ProductListScreen(
-
-) {
+fun ProductListScreen() {
     Scaffold(
         topBar = { TopBar() },
     ) { padding ->
-        MiniApps(
+        Content(
             modifier = Modifier.padding(padding),
-            openNativeMiniApp = openNativeMiniApp,
-            openWebMiniApp = openWebMiniApp,
-            openFlutterMiniApp = openFlutterMiniApp,
         )
     }
 }
 
 @Composable
-fun MiniApps(
+fun Content(
     modifier: Modifier = Modifier,
-    openNativeMiniApp: () -> Unit,
-    openWebMiniApp: () -> Unit,
-    openFlutterMiniApp: () -> Unit,
+    viewModel: ProductListViewModel = viewModel(),
 ) {
-
-    CenterColumn(modifier = modifier.fillMaxSize()) {
-        ElevatedButton(
-            onClick = openNativeMiniApp
-        ) {
-            Text(text = stringResource(id = R.string.home_native_mini_app))
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        ElevatedButton(
-            onClick = openWebMiniApp
-        ) {
-            Text(text = stringResource(id = R.string.home_web_mini_app))
-        }
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        ElevatedButton(
-            onClick = openFlutterMiniApp
-        ) {
-            Text(text = stringResource(id = R.string.home_flutter_mini_app))
-        }
-    }
+    var uiState = viewModel.
 }
 
 @Composable
@@ -88,7 +65,7 @@ fun TopBar(modifier: Modifier = Modifier) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = stringResource(id = R.string.home_list_of_mini_apps),
+                text = stringResource(id = R.string.demo_title),
                 style = MaterialTheme.typography.titleLarge.copy(Color.White)
             )
         }
@@ -99,6 +76,6 @@ fun TopBar(modifier: Modifier = Modifier) {
 @Composable
 fun HomePreview() {
     MiniAppTheme {
-        ProductListScreen({}, {}, {})
+        ProductListScreen()
     }
 }

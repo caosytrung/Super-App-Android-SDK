@@ -1,16 +1,17 @@
 package com.trungcs.demoandroidminiapp.remote
 
+import com.google.gson.GsonBuilder
+import com.trungcs.demoandroidminiapp.remote.model.Product
+import retrofit2.http.Body
+import retrofit2.http.GET
+
 interface ProductApi {
-    @GET(E.APPLICATION_DETAIL)
-    suspend fun getApplicationDetail(
-        @Path("clientId") clientId: String,
-        @Path("appCode") appCode: String
-    ): HestiaAppDetailResponse
+    @GET(Endpoint.GET_PRODUCTS)
+    suspend fun getProduct(): List<Product>
 
-    @GET(HestiaEndpoint.ASSETS)
-    suspend fun getAssets(
-        @Path("clientId") clientId: String,
-        @Path("appCode") appCode: String
-    ): AssetsResponse
-
+    companion object {
+        internal val DEFAULT_GSON = GsonBuilder()
+            .excludeFieldsWithoutExposeAnnotation()
+            .create()
+    }
 }

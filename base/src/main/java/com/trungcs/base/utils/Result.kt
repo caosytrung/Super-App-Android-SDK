@@ -1,5 +1,7 @@
 package com.trungcs.base.utils
 
+import android.net.http.HttpException
+
 sealed class Result<out V : Any, out E : Throwable> {
 
     /**
@@ -98,7 +100,7 @@ sealed class Result<out V : Any, out E : Throwable> {
 }
 
 suspend fun <V : Any> result(
-    block: suspend () -> V
+    block: suspend () -> V,
 ) = try {
     Result.success(block())
 } catch (error: Throwable) {

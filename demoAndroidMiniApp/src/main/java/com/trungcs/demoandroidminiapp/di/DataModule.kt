@@ -1,9 +1,12 @@
 package com.trungcs.demoandroidminiapp.di
 
+import com.trungcs.demoandroidminiapp.data.product.ProductRepository
+import com.trungcs.demoandroidminiapp.data.product.ProductRepositoryImpl
 import com.trungcs.demoandroidminiapp.remote.Endpoint.BASE_URL
 import com.trungcs.demoandroidminiapp.remote.ProductApi
 import com.trungcs.demoandroidminiapp.remote.ProductApi.Companion.DEFAULT_GSON
 import com.trungcs.demoandroidminiapp.utils.apiBuilder
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,19 +16,10 @@ import javax.inject.Qualifier
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ApiModule {
+abstract class DataModule {
 
-    @Provides
-    @ProductApiAnnontation
-    fun provideProductAPI(): ProductApi = apiBuilder(ProductApi::class.java) {
-        baseUrl = BASE_URL
-
-        converter {
-            factory = GsonConverterFactory.create(DEFAULT_GSON)
-        }
-    }
+    @Binds
+    abstract fun bindAnalyticsService(
+        analyticsServiceImpl: ProductRepositoryImpl,
+    ): ProductRepository
 }
-
-@Retention(AnnotationRetention.BINARY)
-@Qualifier
-annotation class ProductApiAnnontation

@@ -1,12 +1,9 @@
-package com.viettel.ekyc.utils
+package com.trungcs.demoandroidminiapp.utils
 
 import com.google.gson.GsonBuilder
 import okhttp3.Authenticator
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import okhttp3.logging.HttpLoggingInterceptor.Level.BODY
-import okhttp3.logging.HttpLoggingInterceptor.Level.NONE
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -34,25 +31,6 @@ internal class ConverterBuilder internal constructor() {
     )
 }
 
-internal class LoggingBuilder internal constructor() {
-
-    /**
-     * Http Logging Level. Default is NONE which means no logs
-     *
-     * @see [HttpLoggingInterceptor.Level]
-     */
-    var level: HttpLoggingInterceptor.Level = NONE
-
-    /**
-     * Create Http Logging which is an OkHttp Interceptor and apply logging level
-     *
-     * @see [HttpLoggingInterceptor] [level]
-     */
-    fun build(): Interceptor = HttpLoggingInterceptor().apply {
-        level = this@LoggingBuilder.level
-    }
-}
-
 internal class ClientBuilder internal constructor() {
 
     /**
@@ -73,16 +51,7 @@ internal class ClientBuilder internal constructor() {
      */
     var authenticator: Authenticator? = null
 
-    private val loggingBuilder = LoggingBuilder()
 
-    /**
-     * Config logging got OkHttp
-     *
-     * @see [LoggingBuilder]
-     */
-    fun logging(block: LoggingBuilder.() -> Unit) {
-        loggingBuilder.apply(block)
-    }
 
     /**
      * Build OkHttpClient with logging, authenticator and interceptors
@@ -90,7 +59,6 @@ internal class ClientBuilder internal constructor() {
      * @see [logging] [authenticator] [interceptors]
      */
     fun build(): OkHttpClient = OkHttpClient.Builder()
-        .addNetworkInterceptor(loggingBuilder.build())
         .readTimeout(readTimeoutInMillis, TimeUnit.MILLISECONDS)
         .writeTimeout(writeTimeoutInMillis, TimeUnit.MILLISECONDS)
         .apply { interceptors.forEach { addInterceptor(it) } }
@@ -100,7 +68,6 @@ internal class ClientBuilder internal constructor() {
 
 internal class ApiBuilder<T> internal constructor(private val api: Class<T>) {
     private val converterBuilder = ConverterBuilder()
-    private val clientBuilder = ClientBuilder()
 
     /**
      * Base url of api
@@ -119,22 +86,12 @@ internal class ApiBuilder<T> internal constructor(private val api: Class<T>) {
     }
 
     /**
-     * Http Client builder
-     *
-     * @see [ClientBuilder]
-     */
-    fun client(block: ClientBuilder.() -> Unit) {
-        clientBuilder.apply(block)
-    }
-
-    /**
      * Build Retrofit API with a base url, json converter and a custom client
      *
      * @see [baseUrl] [converter] [client]
      */
     fun build(): T = Retrofit.Builder()
         .baseUrl(baseUrl)
-        .client(clientBuilder.build())
         .addConverterFactory(converterBuilder.build())
         .build()
         .create(api)
@@ -153,5 +110,5 @@ internal class ApiBuilder<T> internal constructor(private val api: Class<T>) {
  */
 internal fun <T> apiBuilder(
     api: Class<T>,
-    block: ApiBuilder<T>.() -> Unit
+    block: ApiBuilder<T>.() -> Unit,
 ): T = ApiBuilder(api).apply(block).build()

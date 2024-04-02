@@ -1,7 +1,3 @@
 <resources>
-    <string name="app_name">SuperApp</string>
-    <string name="home_list_of_mini_apps">List of Mini Apps</string>
-    <string name="home_native_mini_app">Native Mini-App</string>
-    <string name="home_web_mini_app">Web Mini-App</string>
-    <string name="home_flutter_mini_app">Flutter Mini-App</string>
+    <string name="demo_title">Native Mini App</string>
 </resources>

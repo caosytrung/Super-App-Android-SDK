@@ -57,7 +57,7 @@ dependencies {
 
     implementation( libs.androidx.lifecycle.viewmodel.compose)
     implementation( libs.androidx.lifecycle.viewmodel.ktx)
-    implementation( libs.androidx.lifecycle.runtime.compose)
+
     implementation(project(":base"))
     implementation(project(":nativeMiniAppManager"))
     implementation(project(":miniAppManager"))
@@ -69,7 +69,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
-    implementation( libs.androidx.runtime)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
