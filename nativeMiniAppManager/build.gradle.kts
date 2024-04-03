@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.compose.runtime:runtime")
     implementation(project(":miniAppManager"))
     implementation(project(":base"))
     implementation(libs.androidx.core.ktx)

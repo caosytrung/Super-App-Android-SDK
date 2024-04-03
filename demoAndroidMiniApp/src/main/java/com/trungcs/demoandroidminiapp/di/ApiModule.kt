@@ -16,7 +16,7 @@ import javax.inject.Qualifier
 class ApiModule {
 
     @Provides
-    @ProductApiAnnontation
+    @ProductApiAnnotation
     fun provideProductAPI(): ProductApi = apiBuilder(ProductApi::class.java) {
         baseUrl = BASE_URL
 
@@ -28,4 +28,4 @@ class ApiModule {
 
 @Retention(AnnotationRetention.BINARY)
 @Qualifier
-annotation class ProductApiAnnontation
+annotation class ProductApiAnnotation

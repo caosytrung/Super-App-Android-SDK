@@ -7,8 +7,8 @@ import com.trungcs.mini_app_handler.error.MiniAppError
 import com.trungcs.mini_app_handler.launcher.AppLauncherDelegate
 import com.trungcs.mini_app_handler.model.MiniApp
 import com.trungcs.mini_app_handler.model.MiniAppType
-import com.trungcs.native_mini_app_manager.model.NativeAppLauncher
 import com.trungcs.native_mini_app_manager.model.NativeMiniApp
+import com.trungcs.native_mini_app_manager.model.NativeMiniAppLauncher
 
 class NativeAppLauncherDelegate : AppLauncherDelegate {
     override val appType: MiniAppType
@@ -28,10 +28,11 @@ class NativeAppLauncherDelegate : AppLauncherDelegate {
     }
 
 
-    private fun loadAppLauncher(className: String): Result<NativeAppLauncher, MiniAppError> {
+    private fun loadAppLauncher(className: String): Result<NativeMiniAppLauncher, MiniAppError> {
         return try {
             val launcherClass = Class.forName(className)
-            val launcher = launcherClass.getDeclaredConstructor().newInstance() as NativeAppLauncher
+            val launcher =
+                launcherClass.getDeclaredConstructor().newInstance() as NativeMiniAppLauncher
             Result.success(launcher)
         } catch (e: Exception) {
             Result.failure(MiniAppError.FailedToLoadMiniAppLauncher)

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+//    alias(libs.plugins.jetbrainsKotlinAndroid)
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
@@ -55,6 +56,7 @@ dependencies {
     implementation( libs.hilt.android)
     kapt (libs.hilt.compiler)
 
+    implementation("androidx.compose.runtime:runtime")
     implementation( libs.androidx.lifecycle.viewmodel.compose)
     implementation( libs.androidx.lifecycle.viewmodel.ktx)
 

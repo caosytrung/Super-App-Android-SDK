@@ -41,6 +41,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.compose.runtime:runtime")
     implementation(project(":base"))
     implementation(project(":nativeMiniAppManager"))
     implementation( libs.hilt.android)
