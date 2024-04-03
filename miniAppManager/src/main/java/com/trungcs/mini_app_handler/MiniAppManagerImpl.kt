@@ -18,7 +18,7 @@ internal class MiniAppManagerImpl(private val application: Application) : MiniAp
             delegations[miniApp.type] ?: return Result.failure(MiniAppError.CannotFindPackage)
         val error = delegation.startApp(application, miniApp)
 
-        return if (error != null) Result.failure(error) else Resulst.success(Unit)
+        return if (error != null) Result.failure(error) else Result.success(Unit)
     }
 
 }
