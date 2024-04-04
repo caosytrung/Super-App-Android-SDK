@@ -102,7 +102,10 @@ private fun ProductList(
 ) {
 
     Column {
-        Text(text = "${stringResource(id = R.string.demo_super_app_exchange_token)}")
+        Text(
+            text = "${stringResource(id = R.string.demo_super_app_exchange_token)} $exchangeToken",
+            style = MaterialTheme.typography.titleLarge
+        )
         LazyColumn(
             modifier = modifier,
             state = listState
@@ -198,6 +201,7 @@ fun TopBar(title: String, modifier: Modifier = Modifier) {
 fun HomePreview() {
     MiniAppTheme {
         ProductList(
+            exchangeToken = "DemoToken123",
             listOf(
                 Product(1, "", "Product 1", "123", ""),
                 Product(2, "", "Product 2", "321", "")

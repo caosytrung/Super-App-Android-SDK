@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name=".ui.miniAppActivity.MiniAppActivity"
+            android:exported="false"
+            android:label="@string/title_activity_mini_app"
+            android:theme="@style/Theme.SuperApp" />
+    </application>
 
 </manifest>

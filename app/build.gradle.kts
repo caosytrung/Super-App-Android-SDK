@@ -60,6 +60,7 @@ dependencies {
     implementation( libs.androidx.lifecycle.viewmodel.ktx)
 
     implementation(project(":base"))
+    implementation(project(":webMiniAppManager"))
     implementation(project(":nativeMiniAppManager"))
     implementation(project(":miniAppManager"))
     implementation(project(":demoAndroidMiniApp"))

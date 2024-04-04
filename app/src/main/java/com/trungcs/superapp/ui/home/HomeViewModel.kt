@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val miniAppListRepository: MiniAppListRepository,
+    miniAppListRepository: MiniAppListRepository,
     private var miniAppManager: MiniAppManager,
 ) :
     ViewModel() {
@@ -24,7 +24,8 @@ class HomeViewModel @Inject constructor(
     }
 
     fun openWebMiniApp() {
-
+        val nativeMiniApp = getMiniAppByType(MiniAppType.WEB)
+        nativeMiniApp?.let { miniAppManager.startApp(it) }
     }
 
     fun openFlutterMiniApp() {
