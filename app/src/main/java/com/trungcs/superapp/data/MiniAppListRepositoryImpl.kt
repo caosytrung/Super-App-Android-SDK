@@ -9,5 +9,4 @@ class MiniAppListRepositoryImpl @Inject constructor(private val dataSource: Mini
     override fun getListOfMiniApps(): List<MiniApp> {
         return dataSource.getListOfMiniApp()
     }
-
 }

@@ -1,4 +1,4 @@
-package com.trungcs.demoandroidminiapp.productlist
+package com.trungcs.demoandroidminiapp.ui.productlist
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

@@ -14,7 +14,6 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import com.trungcs.superapp.ui.theme.Typography
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,

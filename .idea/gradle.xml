@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/demoAndroidMiniApp" />
             <option value="$PROJECT_DIR$/miniAppManager" />
             <option value="$PROJECT_DIR$/nativeMiniAppManager" />
+            <option value="$PROJECT_DIR$/webMiniAppManager" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

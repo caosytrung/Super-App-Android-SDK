@@ -5,7 +5,9 @@ import com.trungcs.native_mini_app_manager.model.NativeMiniApp
 import javax.inject.Inject
 
 class DemoMiniAppDataSource @Inject constructor() : MiniAppDataSource {
-    private val demoExtraConfig = mapOf("title" to "Mini App From SuperApp")
+    private val demoExtraConfig =
+        mapOf("title" to "Mini App From SuperApp", "exchangeToken" to "SuperAppToken123")
+
     override fun getListOfMiniApp(): List<MiniApp> {
         return listOf(
             NativeMiniApp(

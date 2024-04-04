@@ -1,4 +1,4 @@
-package com.trungcs.superapp.home
+package com.trungcs.superapp.ui.home
 
 
 import androidx.compose.foundation.background
@@ -21,24 +21,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.trungcs.base.widget.CenterColumn
 import com.trungcs.superapp.R
 import com.trungcs.superapp.ui.theme.SuperAppTheme
 
 @Composable
 fun HomeScreen(
-    openNativeMiniApp: () -> Unit,
-    openWebMiniApp: () -> Unit,
-    openFlutterMiniApp: () -> Unit,
+    homeViewModel: HomeViewModel = viewModel(),
 ) {
     Scaffold(
         topBar = { TopBar() },
     ) { padding ->
         MiniApps(
             modifier = Modifier.padding(padding),
-            openNativeMiniApp = openNativeMiniApp,
-            openWebMiniApp = openWebMiniApp,
-            openFlutterMiniApp = openFlutterMiniApp,
+            openNativeMiniApp = homeViewModel::openNativeMiniApp,
+            openWebMiniApp = homeViewModel::openWebMiniApp,
+            openFlutterMiniApp = homeViewModel::openFlutterMiniApp,
         )
     }
 }
@@ -100,6 +99,6 @@ fun TopBar(modifier: Modifier = Modifier) {
 @Composable
 fun HomePreview() {
     SuperAppTheme {
-        HomeScreen({}, {}, {})
+        HomeScreen()
     }
 }
