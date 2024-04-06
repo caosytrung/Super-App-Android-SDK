@@ -1,7 +1,6 @@
-package com.trungcs.webminiappmanager.webview.interceptor
+package com.trungcs.webminiappmanager.ui.webview.interceptor
 
 import com.trungcs.webminiappmanager.ui.webview.emiiter.EventEmitter
-import com.trungcs.webminiappmanager.ui.webview.interceptor.CommandInterceptor
 
 class SendFinishResultCommandInterceptor(
     private val onFinishMiniApp: (() -> Unit)?,

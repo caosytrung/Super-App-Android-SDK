@@ -2,6 +2,7 @@ package com.trungcs.webminiappmanager.ui.miniAppActivity
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -49,10 +50,34 @@ class MiniAppActivity : ComponentActivity() {
                     }
                 }
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                putExtra(MINI_APP_URL, app.url)
+                putExtra(MINI_APP_URL, buildUrlWithExtraConfig(app))
                 putExtras(bundle)
             }
             context.startActivity(intent)
+        }
+
+        private fun buildUrlWithExtraConfig(
+            app: WebMiniApp,
+        ): String {
+            val originalUrl = app.url
+            val extraConfig = app.extraConfig.toMutableMap()
+            if (extraConfig.isEmpty()) return originalUrl
+
+            val originalUri = Uri.parse(originalUrl)
+            // merge existing queries from original URL and queries from extra config
+            originalUri.queryParameterNames.forEach { key ->
+                if (!extraConfig.containsKey(key)) {
+                    extraConfig[key] = originalUri.getQueryParameter(key) ?: ""
+                }
+            }
+
+            val newUriBuilder = originalUri.buildUpon().clearQuery()
+            for ((key, value) in extraConfig) {
+                // Actually, appendQueryParameter encoded key and value before appending to url
+                newUriBuilder.appendQueryParameter(key, value)
+            }
+
+            return newUriBuilder.toString()
         }
     }
 }

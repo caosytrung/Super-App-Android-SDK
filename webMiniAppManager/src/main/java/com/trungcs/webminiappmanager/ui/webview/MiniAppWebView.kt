@@ -19,7 +19,7 @@ class MiniAppWebView @JvmOverloads constructor(
 ) : WebView(context, attrs, defStyleAttr) {
 
     companion object {
-        const val MINI_JS_INTERFACE = "MINI_JS_INTERFACE"
+        const val MINI_APP_JS_INTERFACE = "miniAppJsInterface"
     }
 
     private val gson = GsonBuilder().create()
@@ -51,7 +51,7 @@ class MiniAppWebView @JvmOverloads constructor(
 
     @SuppressLint("JavascriptInterface")
     private fun initJavascriptInterface() {
-        addJavascriptInterface(this, MINI_JS_INTERFACE)
+        addJavascriptInterface(this, MINI_APP_JS_INTERFACE)
     }
 
     /**

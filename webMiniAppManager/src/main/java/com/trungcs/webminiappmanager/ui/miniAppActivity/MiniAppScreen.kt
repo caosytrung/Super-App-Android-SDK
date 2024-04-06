@@ -5,7 +5,10 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
@@ -13,25 +16,29 @@ import com.trungcs.webminiappmanager.ui.webview.MiniAppWebView
 import com.trungcs.webminiappmanager.ui.webview.WebViewRequestHandler
 import com.trungcs.webminiappmanager.ui.webview.WebViewRequestHandlerBuilder
 import com.trungcs.webminiappmanager.ui.webview.interceptor.GetExtraConfigCommandInterceptor
+import com.trungcs.webminiappmanager.ui.webview.interceptor.SendFinishResultCommandInterceptor
 import com.trungcs.webminiappmanager.ui.webview.urlhandler.CallActionUrlHandler
 import com.trungcs.webminiappmanager.ui.webview.urlhandler.UrlHandlerManager
-import com.trungcs.webminiappmanager.webview.interceptor.SendFinishResultCommandInterceptor
 
 @Composable
-fun MiniAppScreen(url: String, extraConfig: Map<String, String>, onFinishActivity: () -> Unit) {
-//    var showLoading by remember { mutableStateOf(true) }
-
+fun MiniAppScreen(
+    url: String,
+    extraConfig: Map<String, String>,
+    viewModel: MiniAppViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
+    onFinishActivity: () -> Unit,
+) {
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         AndroidView(
             factory = { context ->
                 MiniAppWebView(context)
             },
+            modifier = Modifier.fillMaxSize(),
             update = { webView ->
                 webView.apply {
                     init(
                         customWebViewClient = buildWebViewClient(
-                            { },
-                            { }),
+                            { viewModel.setLoading(true) },
+                            { viewModel.setLoading(false) }),
                     )
 
                     setWebViewCommandHandler(
@@ -46,9 +53,16 @@ fun MiniAppScreen(url: String, extraConfig: Map<String, String>, onFinishActivit
 
             }
         )
-//        if (showLoading) CircularProgressIndicator()
 
+        LoadingView(viewModel = viewModel)
     }
+}
+
+@Composable
+fun LoadingView(viewModel: MiniAppViewModel) {
+    val isLoading by viewModel.isLoading.collectAsState()
+    if (isLoading) CircularProgressIndicator()
+
 }
 
 fun buildWebViewCommandHandler(
@@ -78,7 +92,6 @@ private fun buildWebViewClient(onStart: () -> Unit, onFinished: () -> Unit) =
             super.onPageFinished(view, url)
             onFinished()
         }
-
 
         @Deprecated("Deprecated in Java")
         override fun shouldOverrideUrlLoading(

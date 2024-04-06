@@ -16,7 +16,7 @@ class DemoMiniAppDataSource @Inject constructor() : MiniAppDataSource {
                 extraConfig = demoExtraConfig
             ),
             WebMiniApp(
-                url = "https://tiki.vn/thiet-bi-kts-phu-kien-so/c1815",
+                url = "https://mini-app-web.web.app",
                 extraConfig = demoExtraConfig
             )
         )

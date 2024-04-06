@@ -2,7 +2,6 @@ package com.trungcs.webminiappmanager.ui.webview.interceptor
 
 import com.trungcs.webminiappmanager.ui.webview.emiiter.EventEmitter
 
-
 interface CommandInterceptor {
     fun getCommandName(): String
     fun handleRequest(
@@ -10,5 +9,4 @@ interface CommandInterceptor {
         subscriberId: String,
         requestString: String,
     )
-
 }
