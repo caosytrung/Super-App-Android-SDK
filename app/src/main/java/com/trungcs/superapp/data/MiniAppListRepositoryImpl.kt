@@ -1,6 +1,6 @@
 package com.trungcs.superapp.data
 
-import com.trungcs.mini_app_handler.model.MiniApp
+import com.trungcs.mini_app_bridge.model.MiniApp
 import com.trungcs.superapp.data.datasource.MiniAppDataSource
 import javax.inject.Inject
 

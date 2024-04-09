@@ -1,7 +1,7 @@
 rootProject.name = "SuperApp"
 include(":app")
-include(":nativeMiniAppManager")
+include(":nativeMiniAppBridge")
 include(":base")
-include(":miniAppManager")
+include(":miniAppBridge")
 include(":demoAndroidMiniApp")
-include(":webMiniAppManager")
+include(":webMiniAppBridge")

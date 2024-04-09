@@ -2,11 +2,10 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
-    namespace = "com.trungcs.demoandroidminiapp"
+    namespace = "com.trungcs.webminiappmanager"
     compileSdk = 34
 
     defaultConfig {
@@ -14,6 +13,9 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -38,12 +40,17 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {
     implementation("androidx.compose.runtime:runtime")
     implementation(project(":base"))
-    implementation(project(":nativeMiniAppBridge"))
+    implementation(project(":miniAppBridge"))
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
 

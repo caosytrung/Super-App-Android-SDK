@@ -12,9 +12,9 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base" />
             <option value="$PROJECT_DIR$/demoAndroidMiniApp" />
-            <option value="$PROJECT_DIR$/miniAppManager" />
-            <option value="$PROJECT_DIR$/nativeMiniAppManager" />
-            <option value="$PROJECT_DIR$/webMiniAppManager" />
+            <option value="$PROJECT_DIR$/miniAppBridge" />
+            <option value="$PROJECT_DIR$/nativeMiniAppBridge" />
+            <option value="$PROJECT_DIR$/webMiniAppBridge" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

@@ -1,9 +1,9 @@
 package com.trungcs.superapp.ui.home
 
 import androidx.lifecycle.ViewModel
-import com.trungcs.mini_app_handler.MiniAppManager
-import com.trungcs.mini_app_handler.model.MiniApp
-import com.trungcs.mini_app_handler.model.MiniAppType
+import com.trungcs.mini_app_bridge.MiniAppBridge
+import com.trungcs.mini_app_bridge.model.MiniApp
+import com.trungcs.mini_app_bridge.model.MiniAppType
 import com.trungcs.superapp.data.MiniAppListRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     miniAppListRepository: MiniAppListRepository,
-    private var miniAppManager: MiniAppManager,
+    private var miniAppManager: MiniAppBridge,
 ) :
     ViewModel() {
     private val miniApps: List<MiniApp> = miniAppListRepository.getListOfMiniApps()
