@@ -1,4 +1,4 @@
- This simple demo project in order to give an overview of how the super app and the mini app connect to each other. You can refer it as the base product to build your own Super-App.
+ This simple demo project is to give an overview of how the super app and the mini app connect to each other. You can refer to it as the base product to build your own Super-App.
  
 **More detail about the SuperApp-MiniApp Intergration**: https://medium.com/@caotrung.kk/comprehensive-guide-to-creating-super-app-with-different-types-of-mini-apps-b0ff7a17b84d
 
@@ -7,7 +7,7 @@
 
 
 - SuperApp Module: The Super App that displays all mini-apps to users.
-- miniAppBridge Module: provide a friendly interface to help Super to open mini-apps.
+- miniAppBridge Module: provide a friendly interface to help Super open mini-apps.
 - nativeMiniAppBridge Module: Contains source code to open **Android Native** Mini Apps specifically.
 - webMiniAppBridge Module: Contains source code to open **Web** Mini Apps specifically.
 - demoAndroidMiniApp Module: Demo Mini App module.
